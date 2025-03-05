@@ -129,3 +129,38 @@ form {
 .checkboxes {
   margin: 20px 0;
 }
+
+.carousel-caption {
+  background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+  border-radius: 8px;
+  padding: 15px;
+  bottom: 20px;
+}
+
+.carousel-item img {
+  height: 300px; /* Set a consistent height */
+  object-fit: cover; /* This will crop the image rather than stretching it */
+  width: 100%;
+}
+
+.carousel-indicators {
+  bottom: -10px; /* Move indicators below the carousel */
+}
+
+.carousel-indicators button {
+  background-color: #6c757d; /* Grey color for indicators */
+}
+
+#projectsCarousel {
+  margin-bottom: 50px; /* Space for indicators below */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(108, 117, 125, 0.5); /* Grey background for better visibility */
+  border-radius: 50%;
+  padding: 10px;
+}
