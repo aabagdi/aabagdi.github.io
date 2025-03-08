@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   createNavbar();
   
-  // Set a small timeout to ensure all elements are fully rendered
   setTimeout(() => {
     createCarousel();
   }, 100);
@@ -19,7 +18,7 @@ function createNavbar() {
   const brand = document.createElement("a");
   brand.className = "navbar-brand";
   brand.href = "#";
-  brand.textContent = "Aadit's Portfolio";  // Added a brand name
+  brand.textContent = "Aadit's Website";
 
   const toggleButton = document.createElement("button");
   toggleButton.className = "navbar-toggler";
@@ -99,35 +98,40 @@ function createCarousel() {
   const projects = [
     {
       title: "Chord Helper",
-      image: "images/ChordHelper.webp",
+      image: "images/chord-helper.png",
       description:
         "An app that lets the user play chords and tests their chord recognition skills with a quiz",
       link: "https://apps.apple.com/us/app/chord-helper/id1660572883",
+      altText: "App icon for Chord Helper",
     },
     {
       title: "CursedSnake",
-      image: "images/CursedSnake.webp",
+      image: "images/cursed-snake.png",
       description: "A simple but funny Snake game",
       link: "https://apps.apple.com/us/app/cursed-snake/id6445866465",
+      altText: "App icon for CursedSnake",
     },
     {
       title: "MicMan",
-      image: "images/MicMan.webp",
+      image: "images/micman.png",
       description:
         "A user-friendly, stereo voice-memo app, with advanced features",
       link: "https://apps.apple.com/us/app/micman/id6615062868",
+      altText: "App icon for MicMan",
     },
     {
       title: "DogExplorer",
-      image: "images/DogExplorer.webp",
+      image: "images/dogexplorer.png",
       description: "A user-friendly app that uses machine learning to identify dog breeds through photo capture or upload",
       link: "https://apps.apple.com/us/app/dogexplorer/id6741376283",
+      altText: "App icon for DogExplorer",
     },
     {
       title: "MandelbrotMan",
-      image: "images/MandelbrotMan.webp",
+      image: "images/mandelbrotman.png",
       description: "An app that renders the Mandelbrot set and allows the user to zoom into the intricacies of the fractal",
       link: "https://apps.apple.com/us/app/mandelbrotman/id6742133450",
+      altText: "App icon for MandelbrotMan",
     },
   ];
 
@@ -152,7 +156,7 @@ function createCarousel() {
     const img = document.createElement("img");
     img.src = project.image;
     img.className = "d-block w-100";
-    img.alt = project.title;
+    img.alt = project.altText;
 
     const caption = document.createElement("div");
     caption.className = "carousel-caption d-block";
@@ -160,10 +164,10 @@ function createCarousel() {
     const titleLink = document.createElement("a");
     titleLink.href = project.link;
     titleLink.className = "text-decoration-none";
-    titleLink.style.color = "#6c757d";
+    titleLink.style.color = "#FFFFFF";
     titleLink.target = "_blank";
 
-    const title = document.createElement("h5");
+    const title = document.createElement("h2");
     title.textContent = project.title;
     title.style.fontSize = "1rem";
     titleLink.appendChild(title);
@@ -171,7 +175,7 @@ function createCarousel() {
     const description = document.createElement("p");
     description.textContent = project.description;
     description.style.fontSize = "0.85rem";
-    description.style.color = "#6c757d";
+    description.style.color = "#fffff";
 
     caption.appendChild(titleLink);
     caption.appendChild(description);
@@ -193,6 +197,7 @@ function createCarousel() {
   const prevText = document.createElement("span");
   prevText.className = "visually-hidden";
   prevText.textContent = "Previous";
+  prevText.style.color = "#000000";
 
   prevButton.appendChild(prevIcon);
   prevButton.appendChild(prevText);
@@ -209,6 +214,7 @@ function createCarousel() {
   const nextText = document.createElement("span");
   nextText.className = "visually-hidden";
   nextText.textContent = "Next";
+  nextText.style.color = "#000000";
 
   nextButton.appendChild(nextIcon);
   nextButton.appendChild(nextText);
