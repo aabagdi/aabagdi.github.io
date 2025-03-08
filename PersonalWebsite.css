@@ -39,7 +39,7 @@ html {
 
 .bio {
   margin: 30px auto;
-  text-align: justify;
+  text-align: center;
 }
 
 .bio::first-line {
