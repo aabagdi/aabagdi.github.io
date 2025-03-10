@@ -259,9 +259,7 @@ function setupContactForm() {
     const formStatus = document.getElementById('formStatus');
     
     const submitButton = this.querySelector('button[type="submit"]');
-    const originalButtonText = submitButton.innerHTML;
     submitButton.disabled = true;
-    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
     
     const formData = {
       name: document.getElementById('name').value,
@@ -295,7 +293,6 @@ function setupContactForm() {
       })
       .finally(function() {
         submitButton.disabled = false;
-        submitButton.innerHTML = originalButtonText;
       });
   });
 }

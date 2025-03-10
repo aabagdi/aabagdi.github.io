@@ -99,21 +99,6 @@ html {
   padding: 0 10px;
 }
 
-@media screen and (max-width: 1024px) {
-  .greeting-container {
-    flex-wrap: wrap;
-  }
-
-  .general-grouped-info {
-    width: unset;
-    max-width: 600px;
-  }
-
-  .popup-trigger {
-    width: 100%;
-  }
-}
-
 form {
   margin-bottom: 100px;
 }
@@ -162,4 +147,19 @@ form {
 hr.rounded {
   border-top: 8px solid #bbb;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .greeting-container {
+    flex-wrap: wrap;
+  }
+
+  .general-grouped-info {
+    width: unset;
+    max-width: 600px;
+  }
+
+  .popup-trigger {
+    width: 100%;
+  }
 }
