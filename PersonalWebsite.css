@@ -158,3 +158,8 @@ form {
   border-radius: 50%;
   padding: 10px;
 }
+
+hr.rounded {
+  border-top: 8px solid #bbb;
+  border-radius: 5px;
+}

@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
   createNavbar();
-  
+
   setTimeout(() => {
     createCarousel();
   }, 100);
+
+  setupContactForm();
 });
 
 function createNavbar() {
@@ -46,6 +48,7 @@ function createNavbar() {
     { name: "Welcome", href: "#welcome" },
     { name: "Resume", href: "#resume" },
     { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
   ];
 
   navItems.forEach((item) => {
@@ -62,12 +65,12 @@ function createNavbar() {
   });
 
   navbarCollapse.appendChild(navbarNav);
-  container.appendChild(brand);  // Add the brand name to the navbar
+  container.appendChild(brand);
   container.appendChild(toggleButton);
   container.appendChild(navbarCollapse);
   nav.appendChild(container);
   header.appendChild(nav);
-  
+
   console.log("Navbar created successfully");
 }
 
@@ -77,7 +80,6 @@ function createCarousel() {
 
   if (!projectsSection) {
     console.error("Error: #projects element not found");
-    // Let's log what elements are actually available
     console.log("Available sections:", document.querySelectorAll("section"));
     return;
   }
@@ -122,14 +124,16 @@ function createCarousel() {
     {
       title: "DogExplorer",
       image: "images/dogexplorer.png",
-      description: "A user-friendly app that uses machine learning to identify dog breeds through photo capture or upload",
+      description:
+        "A user-friendly app that uses machine learning to identify dog breeds through photo capture or upload",
       link: "https://apps.apple.com/us/app/dogexplorer/id6741376283",
       altText: "App icon for DogExplorer",
     },
     {
       title: "MandelbrotMan",
       image: "images/mandelbrotman.png",
-      description: "An app that renders the Mandelbrot set and allows the user to zoom into the intricacies of the fractal",
+      description:
+        "An app that renders the Mandelbrot set and allows the user to zoom into the intricacies of the fractal",
       link: "https://apps.apple.com/us/app/mandelbrotman/id6742133450",
       altText: "App icon for MandelbrotMan",
     },
@@ -235,4 +239,63 @@ function createCarousel() {
   } catch (error) {
     console.error("Error initializing Bootstrap carousel:", error);
   }
+}
+
+function setupContactForm() {
+  const contactForm = document.getElementById('contactForm');
+  
+  if (!contactForm) {
+    console.error("Error: #contactForm element not found");
+    return;
+  }
+  
+  console.log("Contact form found, setting up EmailJS");
+
+  emailjs.init("ufznXbMzQjuEzbTAr");
+  
+  contactForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const formStatus = document.getElementById('formStatus');
+    
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+    
+    const formData = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      subject: document.getElementById('subject').value,
+      message: document.getElementById('message').value
+    };
+    
+    emailjs.send('service_obn8u9p', 'template_6olwf5i', formData)
+      .then(function(response) {
+        console.log('EmailJS SUCCESS:', response);
+        
+        formStatus.style.display = 'block';
+        formStatus.className = 'alert alert-success mt-3 text-center';
+        formStatus.textContent = 'Thank you for your message! I will get back to you soon.';
+        
+        contactForm.reset();
+        
+        setTimeout(() => {
+          formStatus.style.display = 'none';
+        }, 5000);
+        
+        console.log("Contact form submitted successfully");
+      })
+      .catch(function(error) {
+        console.error('EmailJS FAILED:', error);
+        
+        formStatus.style.display = 'block';
+        formStatus.className = 'alert alert-danger mt-3 text-center';
+        formStatus.textContent = 'Sorry, there was a problem sending your message. Please try again later.';
+      })
+      .finally(function() {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+      });
+  });
 }
