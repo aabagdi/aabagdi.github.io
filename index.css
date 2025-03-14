@@ -149,7 +149,7 @@ hr.rounded {
   border-radius: 5px;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .greeting-container {
     flex-wrap: wrap;
   }
