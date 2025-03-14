@@ -242,56 +242,59 @@ function createCarousel() {
 }
 
 function setupContactForm() {
-  const contactForm = document.getElementById('contactForm');
-  
+  const contactForm = document.getElementById("contactForm");
+
   if (!contactForm) {
     console.error("Error: #contactForm element not found");
     return;
   }
-  
+
   console.log("Contact form found, setting up EmailJS");
 
   emailjs.init("ufznXbMzQjuEzbTAr");
-  
-  contactForm.addEventListener('submit', function(event) {
+
+  contactForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    
-    const formStatus = document.getElementById('formStatus');
-    
+
+    const formStatus = document.getElementById("formStatus");
+
     const submitButton = this.querySelector('button[type="submit"]');
     submitButton.disabled = true;
-    
+
     const formData = {
-      name: document.getElementById('name').value,
-      email: document.getElementById('email').value,
-      subject: document.getElementById('subject').value,
-      message: document.getElementById('message').value
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      subject: document.getElementById("subject").value,
+      message: document.getElementById("message").value,
     };
-    
-    emailjs.send('service_obn8u9p', 'template_6olwf5i', formData)
-      .then(function(response) {
-        console.log('EmailJS SUCCESS:', response);
-        
-        formStatus.style.display = 'block';
-        formStatus.className = 'alert alert-success mt-3 text-center';
-        formStatus.textContent = 'Thank you for your message! I will get back to you soon.';
-        
+
+    emailjs
+      .send("service_obn8u9p", "template_6olwf5i", formData)
+      .then(function (response) {
+        console.log("EmailJS SUCCESS:", response);
+
+        formStatus.style.display = "block";
+        formStatus.className = "alert alert-success mt-3 text-center";
+        formStatus.textContent =
+          "Thank you for your message! I will get back to you soon.";
+
         contactForm.reset();
-        
+
         setTimeout(() => {
-          formStatus.style.display = 'none';
+          formStatus.style.display = "none";
         }, 5000);
-        
+
         console.log("Contact form submitted successfully");
       })
-      .catch(function(error) {
-        console.error('EmailJS FAILED:', error);
-        
-        formStatus.style.display = 'block';
-        formStatus.className = 'alert alert-danger mt-3 text-center';
-        formStatus.textContent = 'Sorry, there was a problem sending your message. Please try again later.';
+      .catch(function (error) {
+        console.error("EmailJS FAILED:", error);
+
+        formStatus.style.display = "block";
+        formStatus.className = "alert alert-danger mt-3 text-center";
+        formStatus.textContent =
+          "Sorry, there was a problem sending your message. Please try again later.";
       })
-      .finally(function() {
+      .finally(function () {
         submitButton.disabled = false;
       });
   });
