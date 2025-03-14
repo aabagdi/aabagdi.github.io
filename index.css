@@ -162,4 +162,9 @@ hr.rounded {
   .popup-trigger {
     width: 100%;
   }
+
+  .container {
+    width: 90vw;
+    margin: 0 auto;
+  }
 }
